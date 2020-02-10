@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.library.Retrofit.INodeJs;
 import com.example.library.Retrofit.RetroClient;
+import com.example.library.ui.updateinfo.UpdateInformation;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -74,14 +75,16 @@ public class LoginActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginUser(e1.getText().toString(),e2.getText().toString());
+               // loginUser(e1.getText().toString(),e2.getText().toString());
+                Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
+                startActivity(intent);
             }
         });
 
 
     }
 
-    private void loginUser(String email, String password){
+    private void loginUser(final String email, String password){
         compositeDisposable.add(myAPI.loginUser(email,password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -92,6 +95,10 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
                             startActivity(intent);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("email",email);
+                            UpdateInformation fragobj = new UpdateInformation();
+                            fragobj.setArguments(bundle);
                         }
                         else
                             Toast.makeText(LoginActivity.this,""+s,Toast.LENGTH_SHORT).show();

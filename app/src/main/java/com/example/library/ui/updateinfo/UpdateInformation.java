@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.library.R;
+import com.example.library.LoginActivity;
 
 public class UpdateInformation extends Fragment {
 
@@ -30,6 +31,8 @@ public class UpdateInformation extends Fragment {
                 textView.setText(s);
             }
         });
+
+
         return root;
     }
 }

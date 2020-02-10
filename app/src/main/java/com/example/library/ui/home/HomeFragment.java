@@ -1,12 +1,18 @@
 package com.example.library.ui.home;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -20,6 +26,8 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 import com.example.library.CustomAdapter;
+import com.example.library.LoginActivity;
+import com.example.library.Main3Activity;
 import com.example.library.R;
 import com.example.library.Retrofit.INodeJs;
 import com.example.library.Retrofit.RetroClient;
@@ -31,6 +39,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import com.example.library.CustomAdapter;
+import com.example.library.book_information;
 
 public class HomeFragment extends Fragment {
 
@@ -43,88 +52,69 @@ public class HomeFragment extends Fragment {
             R.drawable.e12359,R.drawable.e12360
     };
 
-    String dataParsed = "";
-    String singleParsed = "";
-    INodeJs myAPI;
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
-    GridView androidGridView;
+    private static String[] names={"Aditya","Akash","Charan","Bharath"};
+
+
+
     GridView gridview;
+    ArrayAdapter<String> adapter;
 
-
-    public void onStop(){
-        super.onStop();
+    public static HomeFragment newInstance(){
+        HomeFragment home = new HomeFragment();
+        return  home;
     }
 
-    public void onDestroy(){
-        compositeDisposable.clear();
-        super.onDestroy();
-    }
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-
-        Retrofit retrofit = RetroClient.getInstance();
-        myAPI = retrofit.create(INodeJs.class);
-
-
-
-//        homeViewModel =
-//                ViewModelProviders.of(this).get(HomeViewModel.class);
+        homeViewModel =
+                ViewModelProviders.of(this).get(HomeViewModel.class);
 //        View root = inflater.inflate(R.layout.fragment_home, container, false);
+//
+//       gridview = (GridView) root.findViewById(R.id.grid_books);
+//
+//
+//
+//       gridview.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,names));
+//
+//        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView,View view,int i,long l) {
+//                Toast.makeText(getActivity(),names[i],Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
 //        final TextView textView = root.findViewById(R.id.text_home);
 //        homeViewModel.getText().observe(this, new Observer<String>() {
 //            @Override
 //            public void onChanged(@Nullable String s) {
-//
-//                //textView.setText(s);
+//                textView.setText(s);
 //            }
 //        });
-        return null;
+
+        View view = inflater.inflate(R.layout.fragment_home,container,false);
+        gridview = (GridView) view.findViewById(R.id.grid_books);
+        gridview.setAdapter(new CustomAdapter(view.getContext()));
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView,View view,int i,long l) {
+                Intent intent = new Intent(getActivity(), book_information.class);
+                intent.putExtra("val",String.valueOf(i));
+                startActivity(intent);
+                //Toast.makeText(getActivity(),String.valueOf(i),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        return view;
 
     }
 
-    private void books(String val){
-        compositeDisposable.add(myAPI.books(val)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        //   Toast.makeText(productsdisplay.this, s, Toast.LENGTH_SHORT).show();
-                        json(s);
-                    }
-                })
-
-        );
+    public String toString(){
+        return "home";
     }
-
-    public ArrayList<String> json(String s) throws JSONException {
-
-        // Toast.makeText(productsdisplay.this, s, Toast.LENGTH_SHORT).show();
-
-        ArrayList<String> stringArray = new ArrayList<String>();
-
-        JSONArray jsonArray = new JSONArray(s);
-
-        for(int i=0;i<jsonArray.length();i++){
-            stringArray.add(jsonArray.getString(i));
-            JSONObject JO = (JSONObject) jsonArray.get(i);
-            singleParsed = "Name:" + JO.get("productName");
-            dataParsed = dataParsed + singleParsed;
-
-        }
-
-        Log.e("fucku",dataParsed);
-
-
-        gridview = (GridView) androidGridView.findViewById(R.id.customgrid);
-        gridview.setAdapter(new CustomAdapter(this.getActivity(), stringArray, osImages));
-
-        return stringArray;
-
-    }
-
-
 
 }
