@@ -9,7 +9,6 @@ import retrofit2.Retrofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,21 +17,26 @@ import android.widget.Toast;
 
 import com.example.library.Retrofit.INodeJs;
 import com.example.library.Retrofit.RetroClient;
-import com.example.library.ui.updateinfo.UpdateInformation;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText e1,e2;
-    Button b1,b2;
+    EditText e1;
+    EditText e2;
+    Button b1;
+    Button b2;
     TextView t1;
-
+     String em;
     INodeJs myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+    Bundle bundle = new Bundle();
+
+    @Override
     protected void onStop(){
         super.onStop();
     }
 
+    @Override
     protected void onDestroy(){
         compositeDisposable.clear();
         super.onDestroy();
@@ -47,12 +51,12 @@ public class LoginActivity extends AppCompatActivity {
         Retrofit retrofit = RetroClient.getInstance();
         myAPI = retrofit.create(INodeJs.class);
 
-        e1 = (EditText) findViewById(R.id.uname);
-        e2 = (EditText) findViewById(R.id.password);
+        e1 =  findViewById(R.id.uname);
+        e2 =  findViewById(R.id.password);
 
-        b1 = (Button) findViewById(R.id.login);
+        b1 =  findViewById(R.id.login);
 
-        b2 = (Button) findViewById(R.id.forgotpass);
+        b2 =  findViewById(R.id.forgotpass);
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +66,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        t1 = (TextView) findViewById(R.id.signup);
+        t1 =  findViewById(R.id.signup);
 
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
+                intent.putExtra("username",e1.getText().toString());
+                em=e1.getText().toString();
+
                 startActivity(intent);
             }
         });
@@ -75,13 +82,20 @@ public class LoginActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // loginUser(e1.getText().toString(),e2.getText().toString());
+                em=e1.getText().toString();
                 Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
-                startActivity(intent);
+                intent.putExtra("email",e1.getText().toString());
+                //startActivity(intent);
+                loginUser(e1.getText().toString(),e2.getText().toString());
+
             }
         });
 
 
+    }
+
+    public String getemail(){
+        return em;
     }
 
     private void loginUser(final String email, String password){
@@ -92,13 +106,11 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void accept(String s) throws Exception {
                         if(s.contains("encrypted_password")) {
-                            Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
+                            intent.putExtra("email",e1.getText().toString());
                             startActivity(intent);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("email",email);
-                            UpdateInformation fragobj = new UpdateInformation();
-                            fragobj.setArguments(bundle);
                         }
                         else
                             Toast.makeText(LoginActivity.this,""+s,Toast.LENGTH_SHORT).show();

@@ -19,16 +19,23 @@ import com.example.library.Retrofit.RetroClient;
 
 public class SignupActivity extends AppCompatActivity {
 
-    EditText name,email,id,mobile,password,conpassword;
+    EditText name;
+    EditText email;
+    EditText id;
+    EditText mobile;
+    EditText password;
+    EditText conpassword;
     Button b1;
 
     INodeJs myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+    @Override
     protected void onStop(){
         super.onStop();
     }
 
+    @Override
     protected void onDestroy(){
         compositeDisposable.clear();
         super.onDestroy();
@@ -42,20 +49,27 @@ public class SignupActivity extends AppCompatActivity {
         Retrofit retrofit = RetroClient.getInstance();
         myAPI = retrofit.create(INodeJs.class);
 
-        name = (EditText) findViewById(R.id.name);
-        email = (EditText) findViewById(R.id.email);
-        id = (EditText) findViewById(R.id.id);
-        mobile = (EditText) findViewById(R.id.phone);
-        password = (EditText) findViewById(R.id.password);
-        conpassword = (EditText) findViewById(R.id.conpassword);
+        name =  findViewById(R.id.name);
+        email =  findViewById(R.id.email);
+        id =  findViewById(R.id.id);
+        mobile =  findViewById(R.id.phone);
+        password =  findViewById(R.id.password);
+        conpassword =  findViewById(R.id.conpassword);
 
-        b1 = (Button) findViewById(R.id.register);
+        b1 =  findViewById(R.id.register);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                register(name.getText().toString(),email.getText().toString(),id.getText().toString(),mobile.getText().toString(),password.getText().toString());
-            }
+                String p =password.getText().toString();
+                String p1=conpassword.getText().toString();
+                if(p.equals(p1)){
+                    register(name.getText().toString(),email.getText().toString(),id.getText().toString(),mobile.getText().toString(),password.getText().toString());
+                }
+                else{
+                    Toast.makeText( SignupActivity.this,"Password didn't matched",Toast.LENGTH_SHORT).show();
+                }
+                 }
         });
 
 

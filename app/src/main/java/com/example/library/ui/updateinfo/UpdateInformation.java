@@ -5,34 +5,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
+import com.example.library.Main3Activity;
 import com.example.library.R;
-import com.example.library.LoginActivity;
+
 
 public class UpdateInformation extends Fragment {
 
+    TextView textView;
+
     private UpdateInformationViewModel updateInformationViewModel;
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         updateInformationViewModel =
                 ViewModelProviders.of(this).get(UpdateInformationViewModel.class);
         View root = inflater.inflate(R.layout.fragment_updateinformation, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        updateInformationViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
-
+          textView =  root.findViewById(R.id.uname);
+        Main3Activity main3Activity=(Main3Activity)getActivity();
+        textView.setText(main3Activity.getEmail());
         return root;
     }
+
 }

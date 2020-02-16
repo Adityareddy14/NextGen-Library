@@ -8,7 +8,10 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/menu_home" />
-
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="Profile" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_star_black_24dp"
@@ -17,18 +20,15 @@
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_history_black_24dp"
             android:title="History" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_person_black_24dp"
-            android:title="Update Information" />
+
     </group>
 
     <item>
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_file_download_black_24dp"
-                android:title="Downloads" />
+                android:icon="@drawable/ic_info_outline_black_24dp"
+                android:title="Update Information" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_power_settings_new_black_24dp"

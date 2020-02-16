@@ -1,4 +1,4 @@
-package com.example.library.ui.downloads;
+package com.example.library.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,21 +14,24 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.library.R;
 
-public class DownloadFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private DownloadViewModel downloadViewModel;
+    private ProfileViewModel profileViewModel;
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        downloadViewModel =
-                ViewModelProviders.of(this).get(DownloadViewModel.class);
+        profileViewModel =
+                ViewModelProviders.of(this).get(ProfileViewModel.class);
 
-        View root = inflater.inflate(R.layout.fragment_download, container, false);
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
+
 
 
         final TextView textView = root.findViewById(R.id.text_share);
-        downloadViewModel.getText().observe(this, new Observer<String>() {
+
+        profileViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

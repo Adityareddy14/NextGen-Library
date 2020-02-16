@@ -4,17 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
+
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.library.ui.home.HomeFragment;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class CustomAdapter extends BaseAdapter {
     // Keep all Images in array
@@ -29,7 +25,7 @@ public class CustomAdapter extends BaseAdapter {
     public String[] mThumbNames = {
             "Java Fundamentals", "Effective Java", "Java The Complete Reference", "Head First Java", "The C Language", "The C programming Language",
             "C Programming","C Programming A Model Approach","Expert C Programming","C++ From Control Structures",
-            "C++ Primer","The C++","Effective Modern C++","Accelerated C++","Python Crash Course","HeadFirst Python",
+            "C++ Primer","The C++","Effective Modern C++","Accelerated C++","Python Crash Course","Head First Python",
             "Learn Python The Hard Way","Python Programming","Learning With Python"
 
     };
@@ -58,12 +54,7 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-
-//        ImageView imageView = new ImageView(mContext);
-//        imageView.setImageResource(mThumbIds[position]);
-//        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        imageView.setLayoutParams(new GridView.LayoutParams(300, 300));
-        ViewHolderItem viewHolder;
+ ViewHolderItem viewHolder;
 
 
         if (convertView == null) {
@@ -74,9 +65,9 @@ public class CustomAdapter extends BaseAdapter {
 
             // well set up the ViewHolder
             viewHolder = new ViewHolderItem();
-            viewHolder.textViewItem = (TextView) convertView.findViewById(R.id.textView);
+            viewHolder.textViewItem =  convertView.findViewById(R.id.textView);
 
-            viewHolder.imageViewItem = (ImageView) convertView.findViewById(R.id.imageView);
+            viewHolder.imageViewItem =  convertView.findViewById(R.id.imageView);
             // store the holder with the view.
             convertView.setTag(viewHolder);
 

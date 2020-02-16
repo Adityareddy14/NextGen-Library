@@ -6,17 +6,12 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-
 import com.example.library.Retrofit.INodeJs;
 import com.example.library.Retrofit.RetroClient;
 
@@ -27,15 +22,19 @@ public class ForgotPassword extends AppCompatActivity {
 
     Button b1;
 
-    EditText t1,t2,t3;
+    EditText t1;
+    EditText t2;
+    EditText t3;
 
     INodeJs myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+    @Override
     protected void onStop(){
         super.onStop();
     }
 
+    @Override
     protected void onDestroy(){
         compositeDisposable.clear();
         super.onDestroy();
@@ -50,16 +49,16 @@ public class ForgotPassword extends AppCompatActivity {
         Retrofit retrofit = RetroClient.getInstance();
         myAPI = retrofit.create(INodeJs.class);
 
-        b1 = (Button) findViewById(R.id.verify);
+        b1 =  findViewById(R.id.verify);
 
-        t1 = (EditText) findViewById(R.id.ename);
-        t2 = (EditText) findViewById(R.id.email);
-        t3 = (EditText) findViewById(R.id.emobile);
+        t1 =  findViewById(R.id.ename);
+        t2 =  findViewById(R.id.email);
+        t3 =  findViewById(R.id.emobile);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 // sendMail();
+
                 forgot(t1.getText().toString(),t2.getText().toString(),t3.getText().toString());
             }
         });

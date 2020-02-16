@@ -1,4 +1,4 @@
-package com.example.library.ui.downloads;
+package com.example.library.ui.profile;
 
 
 
@@ -8,11 +8,11 @@ import androidx.lifecycle.ViewModel;
 
 
 
-public class DownloadViewModel extends ViewModel {
+public class ProfileViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public DownloadViewModel() {
+    public ProfileViewModel() {
 
         mText = new MutableLiveData<>();
         mText.setValue("This is share fragment");

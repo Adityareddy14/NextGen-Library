@@ -9,10 +9,10 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Update Information</string>
+    <string name="menu_gallery">Profile</string>
     <string name="menu_slideshow">Ratings</string>
     <string name="menu_tools">History</string>
-    <string name="menu_share">Downloads</string>
+    <string name="menu_share">Update Information</string>
     <string name="menu_send">LogOut</string>
     <string name="title_activity_main3">Main3Activity</string>
     <color name="green">#777768</color>

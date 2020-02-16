@@ -21,12 +21,13 @@ public class LogoutFragment extends Fragment {
 
     private LogoutViewModel logoutViewModel;
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
-        ((Activity)getActivity()).overridePendingTransition(0,0);
+        (getActivity()).overridePendingTransition(0,0);
         logoutViewModel =
                 ViewModelProviders.of(this).get(LogoutViewModel.class);
         View root = inflater.inflate(R.layout.fragment_logout, container, false);

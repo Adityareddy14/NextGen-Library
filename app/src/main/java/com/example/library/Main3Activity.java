@@ -1,10 +1,12 @@
 package com.example.library;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -21,9 +23,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
+
 public class Main3Activity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    public String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +39,9 @@ public class Main3Activity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                       .setAction("Action", null).show();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -51,13 +56,34 @@ public class Main3Activity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
+
+
+    }
+
+    public String getEmail(){
+        return email;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.main3, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menu){
+        int id = menu.getItemId();
+        if(id == R.id.action_settings){
+            Intent intent = new Intent(Main3Activity.this,Whislist.class);
+            startActivity(intent);
+               return true;
+        }
+        return super.onOptionsItemSelected(menu);
     }
 
     @Override
@@ -67,8 +93,9 @@ public class Main3Activity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    @Override
     public void onBackPressed(){
-        return;
+
     }
 
 }
