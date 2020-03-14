@@ -86,5 +86,13 @@ public class ForgotPassword extends AppCompatActivity {
         );
     }
 
+    public int testforgtpssfile(String a,String b,String c) {
+        if (a.equals("") && b.equals("") && c.equals("")) {
+            return 0;
+        }
+
+        return 1;
+    }
+
 
 }

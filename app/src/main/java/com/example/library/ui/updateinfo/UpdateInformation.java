@@ -1,6 +1,7 @@
 package com.example.library.ui.updateinfo;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.library.Main3Activity;
 import com.example.library.R;
+import com.example.library.issuebookform;
 
 
 public class UpdateInformation extends Fragment {
@@ -25,8 +27,13 @@ public class UpdateInformation extends Fragment {
                 ViewModelProviders.of(this).get(UpdateInformationViewModel.class);
         View root = inflater.inflate(R.layout.fragment_updateinformation, container, false);
           textView =  root.findViewById(R.id.uname);
+
         Main3Activity main3Activity=(Main3Activity)getActivity();
         textView.setText(main3Activity.getEmail());
+
+//        issuebookform issue = (issuebookform)getActivity();
+        //Log.e("ochinadate",issue.sendate());
+
         return root;
     }
 

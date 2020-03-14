@@ -20,8 +20,8 @@ android {
     }
 }
 
-sonarqube{
-    properties{
+sonarqube {
+    properties {
         property "sonar.projectName", "Library"
         property "sonar.projectKey", "Library"
         property "sonar.host.url", "http://localhost:9000"
@@ -64,6 +64,7 @@ dependencies {
     implementation files('libs/activation.jar')
     implementation files('libs/additionnal.jar')
     implementation files('libs/mail.jar')
+    androidTestImplementation 'androidx.test:rules:1.2.0-beta01'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -25,6 +25,7 @@ public class SignupActivity extends AppCompatActivity {
     EditText mobile;
     EditText password;
     EditText conpassword;
+    int test=1;
     Button b1;
 
     INodeJs myAPI;
@@ -90,4 +91,22 @@ public class SignupActivity extends AppCompatActivity {
 
         );
     }
+
+    public int testimportfile2(){
+        if(test==1){
+            return 1;
+        }
+
+        return 0;
+
+    }
+    public int testoncfile(String a,String b,int c,int d,int e,int f) {
+        if (a.equals("") && b.equals("") && c == 0 && d == 0 && e == 0 && f == 0) {
+            return 0;
+        }
+
+        return 1;
+    }
+
+
 }

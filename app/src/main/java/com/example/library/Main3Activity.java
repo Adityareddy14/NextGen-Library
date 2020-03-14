@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -60,7 +61,11 @@ public class Main3Activity extends AppCompatActivity {
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
 
-
+//        Intent in = getIntent();
+//        String getfromdate = in.getStringExtra("fromdate");
+//        String gettodate = in.getStringExtra("todate");
+//        Log.e("ochinafrom",getfromdate);
+//        Log.e("ochinato",gettodate);
     }
 
     public String getEmail(){

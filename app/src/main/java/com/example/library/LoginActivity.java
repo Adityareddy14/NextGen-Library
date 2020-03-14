@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     Button b2;
     TextView t1;
      String em;
+     int od = 1;
     INodeJs myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -119,5 +120,26 @@ public class LoginActivity extends AppCompatActivity {
 
         );
     }
+
+
+
+    public int testimportfile(){
+        if(od==1){
+            return 1;
+        }
+
+        return 0;
+
+    }
+
+    public int testsendfile(String a,String b){
+        if(a.equals("")&&b.equals("")){
+            return 0;
+        }
+
+        return 1;
+
+    }
+
 }
 
