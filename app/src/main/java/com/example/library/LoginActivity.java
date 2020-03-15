@@ -86,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                 em=e1.getText().toString();
                 Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
                 intent.putExtra("email",e1.getText().toString());
-                startActivity(intent);
-                //loginUser(e1.getText().toString(),e2.getText().toString());
+                //startActivity(intent);
+                loginUser(e1.getText().toString(),e2.getText().toString());
 
             }
         });
@@ -107,7 +107,6 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void accept(String s) throws Exception {
                         if(s.contains("encrypted_password")) {
-
                             Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
                             intent.putExtra("email",e1.getText().toString());

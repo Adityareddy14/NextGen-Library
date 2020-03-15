@@ -18,7 +18,6 @@ public class ProfileFragment extends Fragment {
 
     private ProfileViewModel profileViewModel;
 
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

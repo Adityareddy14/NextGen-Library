@@ -16,7 +16,7 @@ import com.example.library.issuebookform;
 
 public class UpdateInformation extends Fragment {
 
-    TextView textView;
+    TextView textView,textView1,textView2,textView3;
 
     private UpdateInformationViewModel updateInformationViewModel;
 
@@ -26,10 +26,16 @@ public class UpdateInformation extends Fragment {
         updateInformationViewModel =
                 ViewModelProviders.of(this).get(UpdateInformationViewModel.class);
         View root = inflater.inflate(R.layout.fragment_updateinformation, container, false);
-          textView =  root.findViewById(R.id.uname);
+          textView =  root.findViewById(R.id.textView5);
+        textView1 =  root.findViewById(R.id.textView3);
+        textView2 =  root.findViewById(R.id.textView8);
+        textView3 =  root.findViewById(R.id.textView11);
 
         Main3Activity main3Activity=(Main3Activity)getActivity();
         textView.setText(main3Activity.getEmail());
+        textView1.setText("Aditya");
+        textView2.setText("9384163595");
+        textView3.setText("cse17431");
 
 //        issuebookform issue = (issuebookform)getActivity();
         //Log.e("ochinadate",issue.sendate());
