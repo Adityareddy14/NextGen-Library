@@ -19,10 +19,13 @@ import com.example.library.R;
 import com.example.library.CustomAdapter;
 import com.example.library.Whislist;
 import com.example.library.book_information;
+import com.example.library.ui.history.HistoryFragment;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    HistoryFragment historyFragment = new HistoryFragment();
+
 
     int[] osImages  = {
             R.drawable.e12341,R.drawable.e12342,R.drawable.e12343,R.drawable.e12344,R.drawable.e12345,R.drawable.e12346,
@@ -35,6 +38,7 @@ public class HomeFragment extends Fragment {
 
     GridView gridview;
     ArrayAdapter<String> adapter;
+    Bundle bundle;
 
 
     public static HomeFragment newInstance(){
@@ -64,19 +68,24 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+         bundle = new Bundle();
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView,View view,int i,long l) {
                 Intent intent = new Intent(getActivity(), book_information.class);
                 intent.putExtra("val",String.valueOf(i));
+//                bundle.putInt("val",i);
+//                historyFragment.setArguments(bundle);
                 startActivity(intent);
-                        }
+            }
         });
+
+
 
         return view;
 
     }
+
 
 
     @Override

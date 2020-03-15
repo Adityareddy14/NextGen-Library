@@ -86,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                 em=e1.getText().toString();
                 Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
                 intent.putExtra("email",e1.getText().toString());
-                //startActivity(intent);
-                loginUser(e1.getText().toString(),e2.getText().toString());
+                startActivity(intent);
+                //loginUser(e1.getText().toString(),e2.getText().toString());
 
             }
         });
