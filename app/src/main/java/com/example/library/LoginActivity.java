@@ -124,6 +124,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //fingerprint authentication
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //Get an instance of KeyguardManager and FingerprintManager//
             keyguardManager =
