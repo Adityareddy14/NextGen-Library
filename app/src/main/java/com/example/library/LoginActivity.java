@@ -303,5 +303,14 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public int logintest(String a,String b){
+        if(a.equals("")==b.equals("")){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
 }
 

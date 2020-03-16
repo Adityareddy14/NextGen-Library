@@ -94,5 +94,31 @@ public class ForgotPassword extends AppCompatActivity {
         return 1;
     }
 
+    public int testname(String a,String b){
+        if(a.equals("")==b.equals("")){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public int testemail(String a,String b){
+        if(a.equals("")==b.equals("")){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public int testpassword(String a,String b) {
+        if (a.equals("") == b.equals("")) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 
 }

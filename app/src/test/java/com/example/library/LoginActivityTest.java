@@ -42,4 +42,17 @@ public class LoginActivityTest {
 
     }
 
+    @Test
+    public void logintest() {
+        String s1="1234";
+        String s2="123";
+        double expected=1;
+        double delta=0.1;
+        int output;
+        LoginActivity objonc=new LoginActivity();
+        output=objonc.logintest(s1,s2);
+        assertEquals(expected,output,delta);
+
+    }
+
 }
