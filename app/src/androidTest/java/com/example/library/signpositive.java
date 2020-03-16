@@ -21,7 +21,6 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -31,13 +30,32 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class signuptest1 {
+public class signpositive {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void signuptest1() {
+    public void signpositive() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatTextView = onView(
+                allOf(withId(R.id.signup), withText("SignUP"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                5),
+                        isDisplayed()));
+        appCompatTextView.perform(click());
+
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
@@ -75,7 +93,7 @@ public class signuptest1 {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("swetha@gmail.com"), closeSoftKeyboard());
+        appCompatEditText3.perform(replaceText("sw@gmail.com"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText4 = onView(
                 allOf(withId(R.id.id),
@@ -97,7 +115,7 @@ public class signuptest1 {
                                         0),
                                 3),
                         isDisplayed()));
-        appCompatEditText5.perform(replaceText("963852741"), closeSoftKeyboard());
+        appCompatEditText5.perform(replaceText("12345"), closeSoftKeyboard());
 
         pressBack();
 
@@ -109,7 +127,7 @@ public class signuptest1 {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatEditText6.perform(replaceText("abcde"), closeSoftKeyboard());
+        appCompatEditText6.perform(replaceText("0987"), closeSoftKeyboard());
 
         pressBack();
 
@@ -121,17 +139,7 @@ public class signuptest1 {
                                         0),
                                 5),
                         isDisplayed()));
-        appCompatEditText7.perform(replaceText("abcde"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText8 = onView(
-                allOf(withId(R.id.conpassword), withText("abcde"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                5),
-                        isDisplayed()));
-        appCompatEditText8.perform(pressImeActionButton());
+        appCompatEditText7.perform(replaceText("0987"), closeSoftKeyboard());
 
         pressBack();
 
@@ -163,6 +171,16 @@ public class signuptest1 {
                                 1),
                         isDisplayed()));
         textView.check(matches(withText("LOGIN")));
+
+        ViewInteraction textView2 = onView(
+                allOf(withId(R.id.textView4), withText("Next Gen Library"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        textView2.check(matches(withText("Next Gen Library")));
     }
 
     private static Matcher<View> childAtPosition(

@@ -30,18 +30,18 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest2 {
+public class loginpos2 {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void mainActivityTest2() {
+    public void loginpos2() {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(700);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -56,15 +56,6 @@ public class MainActivityTest2 {
                         isDisplayed()));
         appCompatEditText.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.uname),
                         childAtPosition(
@@ -73,7 +64,7 @@ public class MainActivityTest2 {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("aditya@gmail.com"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("sw@gmail.com"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.password),
@@ -83,7 +74,7 @@ public class MainActivityTest2 {
                                         0),
                                 2),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("mali"), closeSoftKeyboard());
+        appCompatEditText3.perform(replaceText("0987"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.login), withText("login"),
@@ -114,6 +105,17 @@ public class MainActivityTest2 {
                                 1),
                         isDisplayed()));
         textView.check(matches(withText("Home")));
+
+        ViewInteraction textView2 = onView(
+                allOf(withText("Home"),
+                        childAtPosition(
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        textView2.check(matches(withText("Home")));
     }
 
     private static Matcher<View> childAtPosition(
